@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Gambar OCR</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <div class="bg-white shadow-md rounded-lg p-8 max-w-md w-full">
+        <h1 class="text-2xl font-bold text-gray-700 text-center mb-4">Upload Gambar untuk OCR</h1>
+        {% if error %}
+            <p class="text-red-500 text-center">{{ error }}</p>
+        {% endif %}
+        <form method="post" enctype="multipart/form-data" id="upload-form">
+            <div class="mb-4">
+                <input type="file" name="file" accept="image/*" required class="block w-full text-gray-700 bg-gray-100 border rounded-lg p-2">
+            </div>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full">
+                Unggah dan Proses
+            </button>
+        </form>
+        <div id="loading" class="hidden mt-4 text-center">
+            <svg class="animate-spin h-8 w-8 text-blue-500 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+            </svg>
+            <p class="text-gray-600 mt-2">Memproses, harap tunggu...</p>
+        </div>
+    </div>
+    <script>
+        const form = document.getElementById('upload-form');
+        const loading = document.getElementById('loading');
+        form.addEventListener('submit', () => {
+            loading.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
